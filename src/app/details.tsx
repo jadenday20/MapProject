@@ -1,5 +1,5 @@
 import * as React from "react";
-export default class details extends React.Component<any, any>{
+export default class Detail extends React.Component<any, any>{
     componentDidMount(): void {
         if(this.props.teamName != null){
 

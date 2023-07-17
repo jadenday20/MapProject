@@ -1,5 +1,6 @@
 import React from "react";
 import Search from "./search";
+import Detail from "./details";
 
 
 export default class MyApp extends React.Component<any, any>{

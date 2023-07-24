@@ -1,39 +1,54 @@
 import React from "react";
 import Search from "./search";
 import Detail from "./details";
+import Map from "./map";
+import { useState } from "react";
 
 
-export default class MyApp extends React.Component<any, any>{
+export default function MyAppComponent() {
 
-updateSearchValue = (value: string, type:string) => {
-  this.setState({ searchValue: value, searchType: type });
+  const [searchValue, setSearchValue] = useState("");
+  const [searchType, setSearchType] = useState("");
+  const [teamNumber, setTeamNumber] = useState("");
+  const [teamName, setTeamName] = useState("");
+
+function updateSearchValue (value: string, type:string, countryCode:string, stateCode:string ) {
+  setSearchType(type);
+  setSearchValue(value);
+  
   if (type === "team") {
-    this.setState({ teamNumber: value 
-    , teamName:null});
+    setTeamNumber(value);
+    setTeamName("");
   }
   if (type === "name"){
-    this.setState({ teamName: value, teamNumber: null });
-     
+    setTeamName(value);
+    setTeamNumber(""); 
   }
-  
+
+  if 
+
 }
-render() {
+
+function updateMapChoice(teamNumber:string){
+
+}
+
 
   return (
     <div>
       <h1>Title</h1>
       <Search
-        updateSearchValue={this.updateSearchValue}
-        searchValue={this.state.searchValue}
+        updateSearchValue={updateSearchValue}
+        searchValue={searchValue}
         //searchType={this.state.searchType}
       >
       </Search>
       <Map></Map>
       <Detail
-        teamName={this.state.teamName}
-        teamNunmber={this.state.teamNumber}
+        teamName={teamName}
+        teamNunmber={teamNumber}
       ></Detail>
     </div>
   );
-}
+
 }

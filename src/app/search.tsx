@@ -1,22 +1,34 @@
+
+import { InputLabel, MenuItem, Select } from "@mui/material";
 import * as React from "react";
-export default class search extends React.Component<any, any>{
+import { useState } from "react";
 
-updateValue = (value: { target: { value: any; }; }) => {
-    // todo. Check team number and/or name
-    // call api
-    this.props.updateSearchValue(value.target.value, teamInputType)
-}
+export default function Search(updateSearchValue: Function, updateSearchType: Function){
 
-render() {  
-    return (<div>
-        <label>
-            Team Name:
-             <input 
-             name="teamInput" 
-             value={this.props.searchValue}
-             onChange={this.updateValue}
-             />
-        </label>
-    </div>)
+    const [searchValue, setSearchValue] = useState("");
+    const [searchType, setSearchType] = useState("");
+
+    function updateSelectionSearchType(value: { target: { value: any; }; }){
+        setSearchType(value.target.value);
     }
+
+    return(
+        <>
+            <InputLabel id="search-type-label">Search By:</InputLabel>
+        <Select
+            labelId="search-type-label"
+            id="search-type"
+            value={searchType}
+            label="Search By:"
+            onChange={updateSelectionSearchType}
+        >
+            <MenuItem value={"team"}>Team Number</MenuItem>
+            <MenuItem value={"name"}>Team Name</MenuItem>
+            <MenuItem value={"country"}>Country</MenuItem>
+            <MenuItem value={"state"}>State</MenuItem>
+        </Select>
+
+        </>
+    )
 }
+

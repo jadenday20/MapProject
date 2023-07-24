@@ -3,7 +3,7 @@ import { InputLabel, MenuItem, Select } from "@mui/material";
 import * as React from "react";
 import { useState } from "react";
 
-export default function Search(updateSearchValue: Function, updateSearchType: Function){
+export default function Search({updateSearchValue, updateSearchType}: {updateSearchValue: Function, updateSearchType: Function}) {
 
     const [searchValue, setSearchValue] = useState("");
     const [searchType, setSearchType] = useState("");

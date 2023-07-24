@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export default function Detail(teamInfo: {teamName: string, teamNumber: string, country: string, state: string, city: string, contactInfo: string, awards: string}){
+export default function Detail({teamInfo}:{teamInfo: {teamName: string, teamNumber: string, country: string, state: string, city: string, contactInfo: string, awards: string}}){
 
     return(
         <>

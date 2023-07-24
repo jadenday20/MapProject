@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 import Search from "./search";
 import Detail from "./details";
@@ -12,21 +14,32 @@ export default function MyAppComponent() {
   const [teamNumber, setTeamNumber] = useState("");
   const [teamName, setTeamName] = useState("");
 
-function updateSearchValue (value: string, type:string, countryCode:string, stateCode:string ) {
-  setSearchType(type);
+function updateSearchValue (value: string ) {
+
   setSearchValue(value);
-  
-  if (type === "team") {
-    setTeamNumber(value);
+  if (searchType === "team") {
+    setTeamNumber(searchValue);
+    setTeamName("");
+  }
+  if (searchType === "name"){
+    setTeamName(searchValue);
+    setTeamNumber(""); 
+  }
+}
+
+function updateSearchType (type: string ) {
+
+  setSearchType(type);
+  if (searchType === "team") {
+    setTeamNumber(searchValue);
     setTeamName("");
   }
   if (type === "name"){
-    setTeamName(value);
+    setTeamName(searchValue);
     setTeamNumber(""); 
   }
 
-  if 
-
+  
 }
 
 function updateMapChoice(teamNumber:string){
@@ -38,15 +51,18 @@ function updateMapChoice(teamNumber:string){
     <div>
       <h1>Title</h1>
       <Search
+
         updateSearchValue={updateSearchValue}
-        searchValue={searchValue}
-        //searchType={this.state.searchType}
-      >
-      </Search>
-      <Map></Map>
+        updateSearchType={updateSearchValue}
+      />
+
+      <Map
+        countryCode="countryCode"
+        stateCode="stateCode"
+        onClick={updateMapChoice}
+     />
       <Detail
-        teamName={teamName}
-        teamNunmber={teamNumber}
+       teamInfo={{teamName: "teamName", teamNumber: "teamNumber", country: "country", state: "state", city: "city", contactInfo: "contactInfo", awards: "awards"}}
       ></Detail>
     </div>
   );

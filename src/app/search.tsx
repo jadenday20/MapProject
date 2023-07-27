@@ -11,11 +11,13 @@ export default function Search({updateSearchValue, updateSearchType}: {updateSea
     function updateSelectionSearchType(value: { target: { value: any; }; }){
         setSearchType(value.target.value);
         let searchTypeList = ["name","country","state","team"]
+        //make all the unselected dropdowns disappear
         for (let i = 0; i < searchTypeList.length; i++) {
             if (searchTypeList[i] != value.target.value){
                 document.getElementById(searchTypeList[i]).style.display = "none";
             }
         }
+        //show the selected dropdown and the search button
         document.getElementById(value.target.value).style.display = "inline";
         document.getElementById("searchButton").style.display = "inline";
     }
